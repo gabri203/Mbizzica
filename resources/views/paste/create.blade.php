@@ -8,21 +8,22 @@
         <title>Mbizzica</title>
     </head>
     <body>
-        <div class="" style="height:100vh; width:300px; margin:auto; display:flex; flex-direction:column; justify-content:center; ">
-            <h2>Mbizzica</h2>
-            <form action="{{ route('paste.store') }}" method="POST">
-            @csrf
-            <textarea name="content" rows="10" required>{{ old('content') }}</textarea>
-            <input type="datetime-local" name="expires_at" value="{{ old('expires_at') }}">
-            <button type="submit" class="btn btn-primary">Salva</button>
-          </form>
-          <div>
+        <div>
             <form action="{{ route('logout.submit') }}" method="POST">
             @csrf
             <button type="submit" class="btn btn-primary">Logout</button>
             </form>
         </div>
+        <div class="" style="height:100vh; width:700px; margin:auto; display:flex; flex-direction:column; justify-content:center; ">
+            <h2>Mbizzica</h2>
+            <form action="{{ route('paste.store') }}" method="POST">
+                @csrf
+                <textarea style="width:700px; height:350px;" name="content" rows="10" required>{{ old('content') }}</textarea>
+                <input type="datetime-local" name="expires_at" value="{{ old('expires_at') }}">
+            <div>
+                <button type="submit" class="btn btn-primary">Salva</button>
+            </div>
+          </form>
         </div>
-
     </body>
 </html>

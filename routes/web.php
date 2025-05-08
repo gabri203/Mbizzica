@@ -25,6 +25,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/password',[App\Http\Controllers\AuthController::class,'show_password_reset_form'])->name('password.reset');
     Route::post('/password',[App\Http\Controllers\AuthController::class,'password'])->name('password.submit');
 
+
 });
 
 //Autenticazione

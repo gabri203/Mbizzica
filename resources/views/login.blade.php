@@ -9,7 +9,10 @@
     </head>
     <body style="margin: 0; background:#333;">
         <div class="#" style="height:80vh; display:flex; flex-direction:column;justify-content:center; margin:auto; width:300px; border-style:solid; border-width:3px; padding:3em; margin-top:2.2em; background:whitesmoke;" >
-        <form action="{{ route('login.submit') }}" method="POST">
+            @if (session('fail'))
+                <div class="alert alert-danger">{{session('fail')}}</div>
+            @endif
+            <form action="{{ route('login.submit') }}" method="POST">
             <h2>Login</h2>
             @csrf
         <div class="mb-3">

@@ -7,8 +7,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <title>Mbizzica</title>
     </head>
-    <body>
-        <div class="#" style="height:100vh; width:300px; display:flex; flex-direction:column; justify-content:center; margin:auto; ">
+    <body style="background:#333;color:white;">
+        <div class="#" style="height:100vh; width:350px; margin:auto; display:flex; flex-direction:column; justify-content:center; ">
         <h1>Slug: {{ $paste->slug }}</h1>{{-- quando scrivo $paste->slug gli sto praticamento dicendo di prendere dall'oggetto $paste il contenuto di slug cioè del token univoco --}}
         <h2>Contenuto: {{ $paste->content }}</h2>{{-- $paste->content gli sto dicendo di accedere al contenuto dell'oggetto $paste e stamparlo con il tag h2 --}}
 

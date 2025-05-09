@@ -69,7 +69,9 @@ public function login(Request $request): RedirectResponse{
 
         return redirect()->route('paste.create')->with('success','Registrazione completata con successo');
     }
-
+    //se nel caso fallisce la registrazione cioè l'utente o ha sbagliato ad inserire oppure non c'è nel database
+    //mi manda questo messaggio in dietro e lo prendo nel show login con @if session('fail') genericamente se nel caso non entra nel if di sopra della autenticazione poichè ho usato il return back() e with
+    return back()->with('fail','mail o password sbagliata riprova di nuovo');
 
 
 
@@ -86,79 +88,9 @@ public function logout(Request $request){
     return redirect()->route('login')->with('success','Registrazione completata con successo!');
 }
 
-// Mostra la casella di inserimento email di password dimentica
-public function show_email_form(Request $request): View{
-    return view('email');
-}
-
-public function email(Request $request){
-        $request->validate([
-        'email' => ['required','email']
-    ]);
-    // l'oggetto $user riceverà la tabella users specificando con il filtro where otterrà la collonna email e poi
-    // inserendo $request->email filtro quello che gli viene passato all'oggetto $user che conterrà soltanto il contenuto dell'email
-    $user = User::where('email',$request->email)->first();
-
-    // se l'utente non si trova dentro la collonna 'email' cioè non corrisponde lemail entra in questo if che mi ritorna in dietro il forma per l'inserimento nuovamente la password
-    if(!$user){
-        return back()->withInput()->withErrors()->with('error','Email non trovata nel dataBase poichè non è ancora registrata!');
-    }
-    //Restituisce in $broker il servizio di reset password per il provider users
-    $broker = password::broker('users');
-    //crea il token $token->createToken("$user");
-    $token = $broker->createToken($user);
-
-    //qui mettiamo la logica di invio link all'utente
-
-    //Costruzione dell'URL
-    $url = url(route('password.reset',[
-        'token' => $token,
-        'email' => $user->email,
-
-    ],false));
-
-    //Invio all'email dell'utente con Mailable
-    Mail::to($user->email)->send(new App\Mail\ResetPasswordMail($url));
-
-    //ritorna indietro all'utente con un messaggio Password reset inviata con succ................
-    return back()->with('succes','Password reset inviata con successo alla tua email!');
-
-
-}
-
-public function password(Request $request){
-    $request->validate([
-        'token'=> 'required|string',
-        'email'=> 'required|email',
-        'password'=> 'required|confirmed|min:8'
-
-    ]);
-
-    // 2) Si provo a resettare la password usando il broker 'users'
-    $status = Password::broker('users')->reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user, $newPassword) {
-            // qui aggiorniamo la password dell'utente
-            $user->password = Hash::make($newPassword);
-            $user->save();
-        }
-    );
-
-    // 3) Se il reset è andato a buon fine, reindirizzo al login con un messaggio
-    if ($status === Password::PASSWORD_RESET) {
-        return redirect()->route('login')->with('success', 'Password modificata con successo.');
-    }
-
-    // 4) Altrimenti torni indietro con l’errore (es. token scaduto o non valido)
-    return back()->withErrors(['email' => 'Impossibile resettare la password. Riprova.'])->onlyInput('email');
-
-
-}
 
 //mostra la home page
-public function show_home_form(Request $request): View{
-    return view('paste.create');
-}
+
 
 
 }

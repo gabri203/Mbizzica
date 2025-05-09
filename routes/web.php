@@ -17,15 +17,6 @@ Route::middleware('guest')->group(function () {
     Route::get('/login',[App\Http\Controllers\AuthController::class,'show_login_form'])->name('login');
     Route::post('/login',[App\Http\Controllers\AuthController::class,'login'])->name('login.submit');
 
-    //Route Email
-    Route::get('/email',[App\Http\Controllers\AuthController::class,'show_email_form'])->name('email');
-    Route::post('/email',[App\Http\Controllers\AuthController::class,'email'])->name('email.submit');
-
-    //Route Password reset
-    Route::get('/password',[App\Http\Controllers\AuthController::class,'show_password_reset_form'])->name('password.reset');
-    Route::post('/password',[App\Http\Controllers\AuthController::class,'password'])->name('password.submit');
-
-
 });
 
 //Autenticazione
@@ -37,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/paste/store',[App\Http\Controllers\PasteController::class,'store'])->name('paste.store');
     //Route::delate('/paste/{paste}',[App\Http\Controllers\PasteController::class,'destroy'])->name('paste.destroy');
 
-    Route::get('/home',[App\Http\Controllers\AuthController::class,'show_home_form'])->name('home');
+
 
     Route::post('/logout',[App\Http\Controllers\AuthController::class,'logout'])->name('logout.submit');
 });

@@ -49,13 +49,14 @@ class PasteController extends Controller
         return view('paste.show',compact('paste'));
 
     }
-    public function destroy()
+
+   /* public function destroy()
     {
         $paste->delete();
 
         return redirect()->route('paste.create')->with('success','Paste eliminato');
 
-    }
+    }*/
 
 
 

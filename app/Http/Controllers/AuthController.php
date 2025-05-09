@@ -89,7 +89,6 @@ public function logout(Request $request){
 }
 
 
-//mostra la home page
 
 
 

@@ -7,7 +7,7 @@ use App\Http\Controllers\PasteController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//route accessibile ai guest
 Route::middleware('guest')->group(function () {
 
     //Route Registrazione
@@ -28,8 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/paste/{paste:slug}',[App\Http\Controllers\PasteController::class,'show'])->name('paste.show');
     Route::post('/paste/store',[App\Http\Controllers\PasteController::class,'store'])->name('paste.store');
 
-
-
-
+    //Route Logout
     Route::post('/logout',[App\Http\Controllers\AuthController::class,'logout'])->name('logout.submit');
 });

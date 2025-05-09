@@ -1,8 +1,9 @@
 <?php
-
+//importiamo
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 return new class extends Migration
 {
@@ -16,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->mediumText('content');
             $table->dateTime('expires_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -26,5 +28,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('pastes');
+
     }
 };

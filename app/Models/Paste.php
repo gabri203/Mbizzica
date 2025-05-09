@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 class Paste extends Model
 {
+    //
     protected $fillable = [
         'slug',
         'content',
@@ -17,11 +18,12 @@ class Paste extends Model
         'expires_at' => 'datetime',
     ];
 
-    protected $dates = [
+    //ho eliminato protected $dates perchè entra il conflitto con $dates nuove versioni di laravel
+    /*protected $dates = [
         'expires_at',
         'created_at',
         'updated_at',
-    ];
+    ];*/
 
     public static function booted()
     {

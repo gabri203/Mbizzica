@@ -14,7 +14,7 @@ class PasteController extends Controller
     {
         $paste = Paste::create([
             'content'=>'',
-            'expires_at'=> \Carbon\Carbon::now()->addDays(2),
+            'expires_at'=>Carbon::now()->addDays(2),
         ]);
 
         session()->put('paste.id',$paste->id);
@@ -44,6 +44,8 @@ class PasteController extends Controller
     public function show(Paste $paste): View
     {
         if($paste->expires_at && $paste->expires_at->isPast()){
+            //dd('prova');non è divertente questo bug non entra nel if per colpa del isPast() anzi del UTC che va in comflitto con L'UTC del app.php di config
+            $paste->delete();
             abort(404);
         }
         return view('paste.show',compact('paste'));

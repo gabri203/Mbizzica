@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/paste/create',[App\Http\Controllers\PasteController::class,'create'])->name('paste.create');
     Route::get('/paste/{paste:slug}',[App\Http\Controllers\PasteController::class,'show'])->name('paste.show');
     Route::post('/paste/store',[App\Http\Controllers\PasteController::class,'store'])->name('paste.store');
-    //Route::delate('/paste/{paste}',[App\Http\Controllers\PasteController::class,'destroy'])->name('paste.destroy');
+
 
 
 

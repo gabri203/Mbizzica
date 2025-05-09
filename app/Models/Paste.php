@@ -12,7 +12,7 @@ class Paste extends Model
         'expires_at',
     ];
 
-     // Qui dico a Eloquent di trasformare expires_at in Carbon
+     // Qui dico a Eloquent di trasformare expires_at in Carbon gli oggetti stringa in datetime
      protected $casts = [
         'expires_at' => 'datetime',
     ];

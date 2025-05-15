@@ -16,14 +16,12 @@ class AutenticazioneDueFattori extends Controller
     {
         $google2fa = app('pragmarx.google2fa');
         $secret = $google2fa->generateSecretKey();
-        $qrImage = $google2fa->getQRCodeInline(
-        config('app.name'),
-        'your@email.com',
-        $secret
-        );
         $user=auth()->user();
         $user->google2fa_secret = encrypt($secret);
         $user->save();
+        $qrImage = $google2fa->getQRCodeInline(config('app.name'),$user->email,$secret);
+
+
         return view('2fa.abilita',compact('qrImage','secret'));
     }
 

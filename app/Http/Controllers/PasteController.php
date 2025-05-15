@@ -44,7 +44,7 @@ class PasteController extends Controller
     public function show(Paste $paste): View
     {
         if($paste->expires_at && $paste->expires_at->isPast()){
-            //dd('prova');non è divertente questo bug non entra nel if per colpa del isPast() anzi del UTC che va in comflitto con L'UTC del app.php di config
+            //dd('prova');
             $paste->delete();
             abort(404);
         }

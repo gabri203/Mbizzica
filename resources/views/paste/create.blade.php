@@ -14,9 +14,6 @@
             <button type="submit" class="btn btn-primary">Logout</button>
             </form>
         </div>
-        <div>
-            <a href="{{ route('2fa.abilita') }}">2FA-GOOGLE</a>
-        </div>
         <div class="#" style="height:100vh; width:700px; margin:auto; display:flex; flex-direction:column; justify-content:center; ">
             <h2>Mbizzica</h2>
             <form action="{{ route('paste.store') }}" method="POST">

@@ -38,7 +38,7 @@ class AutenticazioneDueFattori extends Controller
 
     if ($google2fa->verifyKey($secret, $request->otp)) {
         //mi fa passare con successo
-        return redirect()->route('profile')->with('success', '2FA attivata');
+        return redirect()->route('paste.create')->with('success', '2FA attivata');
     }
 
     return back()->withErrors(['otp' => 'Codice errato']);

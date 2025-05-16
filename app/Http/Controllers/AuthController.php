@@ -67,7 +67,7 @@ public function login(Request $request): RedirectResponse{
 
         $request->session()->regenerate();
 
-        return redirect()->route('paste.create')->with('success','Registrazione completata con successo');
+        return redirect()->route('2fa.abilita')->with('success','Registrazione completata con successo');
     }
     //se nel caso fallisce la registrazione cioè l'utente o ha sbagliato ad inserire oppure non c'è nel database
     //mi manda questo messaggio in dietro e lo prendo nel show login con @if session('fail') genericamente se nel caso non entra nel if di sopra della autenticazione poichè ho usato il return back() e with
